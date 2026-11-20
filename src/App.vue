@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from './assets/images/logo.svg'
+import ReadoutOperator from './components/readout/ReadoutOperator.vue';
 </script>
 
 <template>
@@ -8,13 +9,14 @@ import Logo from './assets/images/logo.svg'
       <img :src="Logo" alt="Neoncore">
       <span>0/5 ready</span>
     </div>
-    <div>
+    <div class="flex flex-col gap-3">
       <div class="flex flex-col gap-1.5">
         <h1 class="preset-1__mobile text-neutral-100">
           <span aria-hidden="true" class="text-lime-500 pr-1">//</span>Join the Nexus
         </h1>
         <p class="preset-6 uppercase">Initialize your NEONCORE identity</p>
       </div>
+      <ReadoutOperator />
     </div>
   </header>
 </template>
