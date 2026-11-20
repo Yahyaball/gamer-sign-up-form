@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from './assets/images/logo.svg'
+import CornerBracket from './components/backdrop/CornerBracket.vue';
 import ReadoutOperator from './components/readout/ReadoutOperator.vue';
 </script>
 
@@ -19,4 +20,11 @@ import ReadoutOperator from './components/readout/ReadoutOperator.vue';
       <ReadoutOperator />
     </div>
   </header>
+  <main class="relative">
+    <CornerBracket class="absolute" />
+    <CornerBracket class="absolute rotate-180 bottom-0 right-0" />
+    <form class="bg-neutral-900 border border-neutral-700 px-2.5 py-4">
+      asdljhasldsalkdsjadkljlk
+    </form>
+  </main>
 </template>
