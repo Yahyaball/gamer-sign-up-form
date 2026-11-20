@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  Fiesta
+  <p class="preset-1 glow-neon">PIZZA</p>
 </template>

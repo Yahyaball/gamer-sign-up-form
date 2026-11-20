@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Jetbrains Mono";
+  src: url("fonts/jetbrains-mono-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("fonts/orbitron-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-neutral-950: #060a0e;
+  --color-neutral-900: #0b1219;
+  --color-neutral-800: #17212b;
+  --color-neutral-700: #303d4b;
+  --color-neutral-600: #586b7e;
+  --color-neutral-500: #6e7f91;
+  --color-neutral-400: #7d8c9b;
+  --color-neutral-300: #9fadbc;
+  --color-neutral-100: #e1ebf5;
+  --color-neutral-50: #f3f8fc;
+  --color-lime-500: #bff538;
+  --color-lime-700: #80a621;
+  --color-red-400: #ff837a;
+  --color-amber-400: #ffc44d;
+  --color-navy-950: #020508;
+  --font-jetbrains-mono: "Jetbrains Mono", monospace;
+  --font-orbitron: "Orbitron", sans-serif;
+  --spacing: 0.5rem;
+}
+
+@utility preset-1 {
+  @apply font-orbitron font-extrabold text-7xl/[111.11%] tracking-[0.18rem] uppercase;
+}
+
+@utility preset-1__tablet {
+  @apply font-orbitron font-extrabold text-5xl/[120%] tracking-[0.1rem] uppercase;
+}
+
+@utility preset-1__mobile {
+  @apply font-orbitron font-extrabold text-2xl/[111.11%] tracking-[0.09rem] uppercase;
+}
+
+@utility preset-2 {
+  @apply font-orbitron font-extrabold text-2xl/[133.33%] tracking-[0.06rem];
+}
+
+@utility preset-3 {
+  @apply font-orbitron font-extrabold leading-[150%] tracking-[0.16rem];
+}
+
+@utility preset-4 {
+  @apply font-jetbrains-mono leading-[150%];
+}
+
+@utility preset-4__masked {
+  @apply font-jetbrains-mono leading-[150%] tracking-[0.16rem];
+}
+
+@utility preset-5 {
+  @apply font-jetbrains-mono text-sm/[171.43%];
+}
+
+@utility preset-5__bold {
+  @apply font-jetbrains-mono font-bold text-sm/[171.43%] tracking-[0.14rem] uppercase;
+}
+
+@utility preset-6 {
+  @apply font-jetbrains-mono text-xs/[133.33%] tracking-[0.12rem];
+}
+
+@utility preset-7 {
+  @apply font-jetbrains-mono text-xs/[133.33%];
+}
+
+@utility shadow-panel {
+  box-shadow: 0 1.5rem 4rem -1rem alpha(from var(--color-navy-950) / 20%);
+}
+
+@utility shadow-well {
+  box-shadow: inset 0 0.125rem 0.25rem 0 alpha(from var(--color-navy-950) / 40%);
+}
+
+@utility shadow-button-hover {
+  box-shadow: 0.25rem 0.25rem 0 0 alpha(from var(--color-lime-500) / 60%);
+}
+
+@utility glow-neon {
+  filter: drop-shadow(0 0 0.5rem alpha(from var(--color-lime-500) / 40%));
+}
