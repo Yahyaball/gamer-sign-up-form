@@ -42,11 +42,11 @@
 }
 
 @utility preset-1__tablet {
-  @apply font-orbitron font-extrabold text-5xl/[120%] tracking-[0.1rem] uppercase;
+  @apply font-orbitron font-extrabold text-[2.5rem]/[120%] tracking-[0.1rem] uppercase;
 }
 
 @utility preset-1__mobile {
-  @apply font-orbitron font-extrabold text-2xl/[111.11%] tracking-[0.09rem] uppercase;
+  @apply font-orbitron font-extrabold text-4xl/[111.11%] tracking-[0.09rem] uppercase;
 }
 
 @utility preset-2 {
