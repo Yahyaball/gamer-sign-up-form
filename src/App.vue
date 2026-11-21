@@ -26,10 +26,10 @@ import ReadoutOperator from './components/readout/ReadoutOperator.vue';
     <main class="relative">
       <CornerBracket class="absolute" />
       <CornerBracket class="absolute rotate-180 bottom-0 right-0" />
-      <form class="bg-neutral-900 border border-neutral-700 px-2.5 py-4">
+      <form class="bg-neutral-900 border border-neutral-700 px-2.5 py-4 flex flex-col gap-3">
         <PanelHead note="short" />
         <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07" hint="At least 8 characters"
-          type="password" :strength-level="0" valid />
+          type="password" valid />
       </form>
     </main>
   </div>

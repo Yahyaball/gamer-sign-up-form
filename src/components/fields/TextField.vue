@@ -36,7 +36,7 @@ const passwordShown = ref(false)
             <img v-if="valid" :src="TickTwenty" alt="valid" :class="strengthLevel !== undefined ? undefined : 'pr-2'">
             <RevealButton v-if="strengthLevel !== undefined" @toggle="passwordShown = !passwordShown" />
         </div>
-        <StrengthMeter :strength-level="strengthLevel" />
+        <StrengthMeter v-if="strengthLevel !== undefined" :strength-level="strengthLevel" />
         <HintField :name="name" :error="error ? true : false" :hint="hint" :password="strengthLevel ? true : false"
             :strength="strengthLevel" />
     </div>
