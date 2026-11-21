@@ -28,8 +28,14 @@ import ReadoutOperator from './components/readout/ReadoutOperator.vue';
       <CornerBracket class="absolute rotate-180 bottom-0 right-0" />
       <form class="bg-neutral-900 border border-neutral-700 px-2.5 py-4 flex flex-col gap-3">
         <PanelHead note="short" />
-        <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07" hint="At least 8 characters"
-          type="password" valid />
+        <div class="flex flex-col gap-3">
+          <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07"
+            hint="3–20 characters: letters, numbers, _ or -" type="text" />
+          <TextField label="Email" name="email" placeholder="you@example.com" type="email" />
+          <TextField label="Password" name="password" hint="At least 8 characters" type="password"
+            :strength-level="0" />
+          <TextField label="Confirm password" name="confirm-password" type="password" />
+        </div>
       </form>
     </main>
   </div>

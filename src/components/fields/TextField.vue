@@ -34,7 +34,7 @@ const passwordShown = ref(false)
                 :aria-invalid="error ? true : false"
                 :aria-describedby="`${name}-hint ${strengthLevel ? 'password-strength' : ''}`" :disabled="locked" />
             <img v-if="valid" :src="TickTwenty" alt="valid" :class="strengthLevel !== undefined ? undefined : 'pr-2'">
-            <RevealButton v-if="strengthLevel !== undefined" @toggle="passwordShown = !passwordShown" />
+            <RevealButton v-if="type === 'password'" @toggle="passwordShown = !passwordShown" />
         </div>
         <StrengthMeter v-if="strengthLevel !== undefined" :strength-level="strengthLevel" />
         <HintField :name="name" :error="error ? true : false" :hint="hint" :password="strengthLevel ? true : false"
