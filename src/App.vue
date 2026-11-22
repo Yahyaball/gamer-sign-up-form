@@ -7,18 +7,19 @@ import BaseLink from "./components/controls/BaseLink.vue";
 import PanelHead from "./components/controls/PanelHead.vue";
 import TextField from "./components/fields/TextField.vue";
 import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
+import PatternBackdrop from './assets/images/pattern-backdrop.svg'
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <header class="flex flex-col gap-4">
+  <div class="relative flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] w-full max-w-70">
+    <header class="flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)]">
       <div class="flex justify-between items-center preset-6 uppercase">
         <img :src="Logo" alt="Neoncore" />
         <span>0/5 ready</span>
       </div>
       <div class="flex flex-col gap-3">
         <div class="flex flex-col gap-1.5">
-          <h1 class="preset-1__mobile text-neutral-100">
+          <h1 class="preset-1__mobile md:preset-1__tablet lg:preset-1 text-neutral-100">
             <span aria-hidden="true" class="text-lime-500 pr-1">//</span>Join
             the Nexus
           </h1>
@@ -30,7 +31,8 @@ import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
     <main class="relative">
       <CornerBracket class="absolute" />
       <CornerBracket class="absolute rotate-180 bottom-0 right-0" />
-      <form class="bg-neutral-900 border border-neutral-700 px-2.5 py-4 flex flex-col gap-3">
+      <form
+        class="bg-neutral-900 border border-neutral-700 px-[clamp(1.25rem,0.057rem+5.089vw,2.5rem)] py-[clamp(2rem,1.523rem+2.036vw,2.5rem)] flex flex-col gap-3">
         <PanelHead note="short" />
         <div class="flex flex-col gap-3">
           <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07"
@@ -54,5 +56,7 @@ import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
         </p>
       </form>
     </main>
+    <img :src="PatternBackdrop" alt=""
+      class="absolute -bottom-4.75 left-1/2 -translate-x-1/2 min-w-100 pointer-events-none select-none -z-50">
   </div>
 </template>
