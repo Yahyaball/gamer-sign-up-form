@@ -11,8 +11,10 @@ import PatternBackdrop from './assets/images/pattern-backdrop.svg'
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] w-full max-w-70">
-    <header class="flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)]">
+  <div
+    class="relative flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] w-full max-w-70 lg:flex-row lg:max-w-140 lg:gap-10">
+    <header
+      class="flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] lg:flex-1 lg:basis-[calc(50%-40px)] lg:justify-center">
       <div class="flex justify-between items-center preset-6 uppercase">
         <img :src="Logo" alt="Neoncore" />
         <span>0/5 ready</span>
@@ -28,7 +30,7 @@ import PatternBackdrop from './assets/images/pattern-backdrop.svg'
         <ReadoutOperator />
       </div>
     </header>
-    <main class="relative">
+    <main class="relative lg:flex-1 lg:basis-[calc(42.857%-40px)]">
       <CornerBracket class="absolute" />
       <CornerBracket class="absolute rotate-180 bottom-0 right-0" />
       <form
@@ -57,6 +59,6 @@ import PatternBackdrop from './assets/images/pattern-backdrop.svg'
       </form>
     </main>
     <img :src="PatternBackdrop" alt=""
-      class="absolute -bottom-4.75 left-1/2 -translate-x-1/2 min-w-100 pointer-events-none select-none -z-50">
+      class="absolute -bottom-4.75 max-lg:left-1/2 max-lg:-translate-x-1/2 min-w-100 pointer-events-none select-none -z-50 lg:bottom-1/2 lg:translate-y-1/2 lg:-right-60">
   </div>
 </template>
