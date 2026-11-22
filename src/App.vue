@@ -9,9 +9,27 @@ import TextField from "./components/fields/TextField.vue";
 import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
 import PatternBackdrop from './assets/images/pattern-backdrop.svg'
 import BaseReadout from "./components/readout/BaseReadout.vue";
-import { ref } from "vue";
+import type { FieldName, FieldState } from "./types/readout.ts";
+import { computed, ref } from "vue";
 
 const callsign = ref('')
+const email = ref('')
+const password = ref('')
+const confirmPassword = ref('')
+const terms = ref(false)
+
+const callsignValidation = computed(() => /^[A-Za-z0-9_-]{3,20}$/.test(callsign.value))
+const emailValidation = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value))
+const passwordValidation = computed(() => password.value.length >= 8)
+const confirmPasswordValidation = computed(() => password.value === confirmPassword.value && passwordValidation.value)
+
+const fields = computed<Partial<Record<FieldName, FieldState>>>(() => ({
+  callsign: { status: callsignValidation.value ? 'ok' : 'pending', text: callsignValidation.value ? 'ok' : 'pending' },
+  email: { status: emailValidation.value ? 'ok' : 'pending', text: emailValidation.value ? 'ok' : 'pending' },
+  password: { status: passwordValidation.value ? 'ok' : 'pending', text: passwordValidation.value ? 'ok' : 'pending' },
+  confirm: { status: confirmPasswordValidation.value ? 'ok' : 'pending', text: confirmPasswordValidation.value ? 'ok' : 'pending' },
+  terms: { status: terms.value ? 'ok' : 'pending', text: terms.value ? 'ok' : 'required' }
+}))
 </script>
 
 <template>
@@ -31,8 +49,8 @@ const callsign = ref('')
           </h1>
           <p class="preset-6 uppercase">Initialize your NEONCORE identity</p>
         </div>
-        <ReadoutOperator class="lg:hidden" />
-        <BaseReadout class="max-lg:hidden" />
+        <ReadoutOperator class="lg:hidden" :callsign="callsignValidation ? callsign : 'Unassigned'" />
+        <BaseReadout class="max-lg:hidden" :callsign="callsignValidation ? callsign : 'Unassigned'" :fields="fields" />
       </div>
     </header>
     <main class="relative lg:flex-1 lg:basis-[calc(42.857%-40px)]">
@@ -43,13 +61,16 @@ const callsign = ref('')
         <PanelHead note="short" />
         <div class="flex flex-col gap-3">
           <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07"
-            hint="3–20 characters: letters, numbers, _ or -" type="text" v-model="callsign" />
-          <TextField label="Email" name="email" placeholder="you@example.com" type="email" />
-          <TextField label="Password" name="password" hint="At least 8 characters" type="password"
-            :strength-level="0" />
-          <TextField label="Confirm password" name="confirm-password" type="password" />
+            hint="3–20 characters: letters, numbers, _ or -" type="text" v-model="callsign"
+            :valid="callsignValidation" />
+          <TextField label="Email" name="email" placeholder="you@example.com" type="email" v-model="email"
+            :valid="emailValidation" />
+          <TextField label="Password" name="password" hint="At least 8 characters" type="password" :strength-level="0"
+            v-model="password" :valid="passwordValidation" />
+          <TextField label="Confirm password" name="confirm-password" type="password" v-model="confirmPassword"
+            :valid="confirmPasswordValidation" />
           <div class="preset-5 text-neutral-300 flex gap-1.5">
-            <BaseCheckbox name="accept" id="accept" />
+            <BaseCheckbox name="accept" id="accept" v-model="terms" />
             <label for="accept">I accept the <BaseLink href="/">Terms</BaseLink> and
               <BaseLink href="/">Privacy Policy</BaseLink>.
             </label>

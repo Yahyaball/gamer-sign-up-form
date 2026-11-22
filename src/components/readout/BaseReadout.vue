@@ -1,21 +1,30 @@
 <script setup lang="ts">
 import ReadoutRow from './ReadoutRow.vue';
+import type { FieldName, FieldState } from '../../types/readout.ts';
+import { computed } from 'vue';
 
+const props = defineProps<{
+    callsign?: string
+    fields?: Partial<Record<FieldName, FieldState>>
+}>()
+
+const total = computed(() => Object.values(props.fields ?? {}).length)
+const readyCount = computed(() => Object.values(props.fields ?? {}).filter(state => state.status === 'ok' || state.status === 'locked').length)
 </script>
 
 <template>
     <div class="flex flex-col pt-3 border-t border-neutral-700">
-        <span class="preset-6 flex justify-between uppercase">
+        <span class="preset-6 flex justify-between uppercase" :class="{ 'text-lime-500': readyCount === total }">
             Operator ID
-            <span>0/5 ready</span>
+            <span>{{ readyCount }}/{{ total }} ready</span>
         </span>
-        <span class="preset-2 uppercase pt-1">Unassigned</span>
+        <span class="preset-2 pt-1"
+            :class="fields?.callsign?.status === 'ok' || fields?.callsign?.status === 'locked' ? 'text-neutral-100' : 'uppercase'">{{
+                callsign
+            }}</span>
         <div class="pt-2 flex flex-col gap-1">
-            <ReadoutRow label="callsign" status="pending" status-text="pending" />
-            <ReadoutRow label="email" status="pending" status-text="pending" />
-            <ReadoutRow label="password" status="pending" status-text="pending" />
-            <ReadoutRow label="confirm" status="pending" status-text="pending" />
-            <ReadoutRow label="terms" status="pending" status-text="required" />
+            <ReadoutRow v-for="(state, name) in fields" :key="name" :label="name" :status="state?.status"
+                :status-text="state?.text" />
         </div>
     </div>
 </template>
