@@ -8,18 +8,19 @@ import PanelHead from "./components/controls/PanelHead.vue";
 import TextField from "./components/fields/TextField.vue";
 import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
 import PatternBackdrop from './assets/images/pattern-backdrop.svg'
+import BaseReadout from "./components/readout/BaseReadout.vue";
 </script>
 
 <template>
   <div
     class="relative flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] w-full max-w-70 lg:flex-row lg:max-w-140 lg:gap-10">
     <header
-      class="flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] lg:flex-1 lg:basis-[calc(50%-40px)] lg:justify-center">
+      class="flex flex-col gap-[clamp(2rem,1.523rem+2.036vw,2.5rem)] lg:flex-1 lg:basis-[calc(50%-40px)] lg:justify-center lg:gap-10">
       <div class="flex justify-between items-center preset-6 uppercase">
         <img :src="Logo" alt="Neoncore" />
-        <span>0/5 ready</span>
+        <span class="lg:hidden">0/5 ready</span>
       </div>
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-3 lg:gap-8">
         <div class="flex flex-col gap-1.5">
           <h1 class="preset-1__mobile md:preset-1__tablet lg:preset-1 text-neutral-100">
             <span aria-hidden="true" class="text-lime-500 pr-1">//</span>Join
@@ -27,7 +28,8 @@ import PatternBackdrop from './assets/images/pattern-backdrop.svg'
           </h1>
           <p class="preset-6 uppercase">Initialize your NEONCORE identity</p>
         </div>
-        <ReadoutOperator />
+        <ReadoutOperator class="lg:hidden" />
+        <BaseReadout class="max-lg:hidden" />
       </div>
     </header>
     <main class="relative lg:flex-1 lg:basis-[calc(42.857%-40px)]">
