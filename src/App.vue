@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Logo from './assets/images/logo.svg'
 import CornerBracket from './components/backdrop/CornerBracket.vue';
+import BaseCheckbox from './components/controls/BaseCheckbox.vue';
 import PanelHead from './components/controls/PanelHead.vue';
 import TextField from './components/fields/TextField.vue';
 import ReadoutOperator from './components/readout/ReadoutOperator.vue';
@@ -35,6 +36,10 @@ import ReadoutOperator from './components/readout/ReadoutOperator.vue';
           <TextField label="Password" name="password" hint="At least 8 characters" type="password"
             :strength-level="0" />
           <TextField label="Confirm password" name="confirm-password" type="password" />
+          <div class="preset-5 text-neutral-300 flex gap-1.5">
+            <BaseCheckbox name="accept" id="accept" />
+            <label for="accept">I accept the Terms and Privacy Policy.</label>
+          </div>
         </div>
       </form>
     </main>
