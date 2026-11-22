@@ -15,6 +15,7 @@ defineProps<{
     error?: string,
     locked?: boolean,
     strengthLevel?: 0 | 1 | 2 | 3 | 4,
+    inputAttrs?: object
 }>()
 
 const passwordShown = ref(false)
@@ -33,7 +34,8 @@ const model = defineModel({ type: String, default: '' })
                 v-model="model" :placeholder="placeholder"
                 class="py-1.5 px-2 outline-0 placeholder:text-neutral-500 disabled:text-neutral-300 flex-1 w-full"
                 :aria-invalid="error ? true : false"
-                :aria-describedby="`${name}-hint ${strengthLevel ? 'password-strength' : ''}`" :disabled="locked" />
+                :aria-describedby="`${name}-hint ${strengthLevel ? 'password-strength' : ''}`" :disabled="locked"
+                v-bind="inputAttrs" />
             <img v-if="valid" :src="TickTwenty" alt="valid" :class="strengthLevel !== undefined ? undefined : 'pr-2'">
             <RevealButton v-if="type === 'password'" @toggle="passwordShown = !passwordShown" />
         </div>

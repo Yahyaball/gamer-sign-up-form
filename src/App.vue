@@ -11,6 +11,14 @@ import PatternBackdrop from './assets/images/pattern-backdrop.svg'
 import BaseReadout from "./components/readout/BaseReadout.vue";
 import type { FieldName, FieldState } from "./types/readout.ts";
 import { computed, ref } from "vue";
+import { toTypedSchema } from "@vee-validate/zod";
+import z from "zod";
+
+const schema = toTypedSchema(
+  z.object({
+
+  })
+)
 
 const callsign = ref('')
 const email = ref('')

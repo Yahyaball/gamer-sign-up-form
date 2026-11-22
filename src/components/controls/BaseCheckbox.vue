@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import Tick from '../../assets/images/icon-tick-16.svg'
 
 defineProps<{
     name?: string
     id?: string
     invalid?: boolean
+    inputAttrs?: Object
 }>()
 
 const model = defineModel({ type: Boolean, default: false })
@@ -14,7 +14,7 @@ const model = defineModel({ type: Boolean, default: false })
 <template>
     <div class="size-3 relative">
         <input type="checkbox" :name="name" :id="name" class="size-[inherit] cursor-pointer opacity-0 peer"
-            :aria-invalid="invalid" v-model="model">
+            :aria-invalid="invalid" v-model="model" v-bind="inputAttrs">
         <div
             class="absolute top-0 size-[inherit] bg-neutral-950 border-neutral-600 pointer-events-none border peer-hover:border-neutral-300 peer-focus-visible:border-lime-500 transition-colors peer-checked:bg-lime-500 peer-checked:border-lime-500 peer-checked:peer-hover:border-lime-500 peer-aria-invalid:border-red-400 peer-checked:peer-aria-invalid:border-lime-500">
         </div>
