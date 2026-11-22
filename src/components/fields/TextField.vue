@@ -18,6 +18,7 @@ defineProps<{
 }>()
 
 const passwordShown = ref(false)
+const model = defineModel({ type: String, default: '' })
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const passwordShown = ref(false)
             <div
                 class="absolute size-[calc(100%+0.75rem)] pointer-events-none border-2 -m-0.75 border-transparent has-[+input:focus-visible]:border-lime-500 transition-colors" />
             <input :id="name" :name="name" :type="type === 'password' ? (passwordShown ? 'text' : 'password') : type"
-                :placeholder="placeholder"
+                v-model="model" :placeholder="placeholder"
                 class="py-1.5 px-2 outline-0 placeholder:text-neutral-500 disabled:text-neutral-300 flex-1 w-full"
                 :aria-invalid="error ? true : false"
                 :aria-describedby="`${name}-hint ${strengthLevel ? 'password-strength' : ''}`" :disabled="locked" />

@@ -9,6 +9,9 @@ import TextField from "./components/fields/TextField.vue";
 import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
 import PatternBackdrop from './assets/images/pattern-backdrop.svg'
 import BaseReadout from "./components/readout/BaseReadout.vue";
+import { ref } from "vue";
+
+const callsign = ref('')
 </script>
 
 <template>
@@ -40,7 +43,7 @@ import BaseReadout from "./components/readout/BaseReadout.vue";
         <PanelHead note="short" />
         <div class="flex flex-col gap-3">
           <TextField label="Callsign" name="callsign" placeholder="e.g. Vortex_07"
-            hint="3–20 characters: letters, numbers, _ or -" type="text" />
+            hint="3–20 characters: letters, numbers, _ or -" type="text" v-model="callsign" />
           <TextField label="Email" name="email" placeholder="you@example.com" type="email" />
           <TextField label="Password" name="password" hint="At least 8 characters" type="password"
             :strength-level="0" />
