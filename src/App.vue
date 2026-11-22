@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Logo from "./assets/images/logo.svg";
 import CornerBracket from "./components/backdrop/CornerBracket.vue";
+import BaseButton from "./components/controls/BaseButton.vue";
 import BaseCheckbox from "./components/controls/BaseCheckbox.vue";
 import BaseLink from "./components/controls/BaseLink.vue";
 import PanelHead from "./components/controls/PanelHead.vue";
@@ -45,6 +46,12 @@ import ReadoutOperator from "./components/readout/ReadoutOperator.vue";
             </label>
           </div>
         </div>
+        <BaseButton type="submit">
+          Initialize account
+        </BaseButton>
+        <p class="text-center preset-5">
+          Already an operator? <BaseLink href="/">Log in</BaseLink>
+        </p>
       </form>
     </main>
   </div>
