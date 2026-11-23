@@ -6,6 +6,7 @@ import { computed } from 'vue';
 const props = defineProps<{
     callsign?: string
     fields?: Partial<Record<FieldName, FieldState>>
+    provisioned?: boolean
 }>()
 
 const total = computed(() => Object.values(props.fields ?? {}).length)
@@ -14,9 +15,10 @@ const readyCount = computed(() => Object.values(props.fields ?? {}).filter(state
 
 <template>
     <div class="flex flex-col pt-3 border-t border-neutral-700">
-        <span class="preset-6 flex justify-between uppercase" :class="{ 'text-lime-500': readyCount === total }">
+        <span class="preset-6 flex justify-between uppercase">
             Operator ID
-            <span>{{ readyCount }}/{{ total }} ready</span>
+            <span :class="{ 'text-lime-500': readyCount === total || provisioned }">{{ provisioned ? 'provisioned' :
+                `${readyCount}/${total} ready` }}</span>
         </span>
         <span class="preset-2 pt-1"
             :class="fields?.callsign?.status === 'ok' || fields?.callsign?.status === 'locked' ? 'text-neutral-100' : 'uppercase'">{{

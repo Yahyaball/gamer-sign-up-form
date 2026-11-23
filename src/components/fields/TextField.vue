@@ -5,7 +5,7 @@ import HintField from './HintField.vue';
 import RevealButton from './RevealButton.vue';
 import StrengthMeter from './StrengthMeter.vue';
 
-defineProps<{
+const props = defineProps<{
     label?: string,
     name?: string,
     placeholder?: string,
@@ -18,8 +18,10 @@ defineProps<{
     inputAttrs?: object
 }>()
 
-const passwordShown = ref(false)
+const passwordShown = defineModel<boolean>('showPassword', { default: false })
 const model = defineModel({ type: String, default: '' })
+const inputEl = ref<HTMLInputElement | null>(null)
+defineExpose({ focus: () => inputEl.value?.focus() })
 </script>
 
 <template>
@@ -30,17 +32,18 @@ const model = defineModel({ type: String, default: '' })
             class="relative shadow-well bg-neutral-950 border border-neutral-600 has-aria-invalid:border-red-400 preset-4 transition-colors hover:border-neutral-300 has-[input:focus-visible]:border-lime-500 outline-0 text-neutral-100 flex items-center">
             <div
                 class="absolute size-[calc(100%+0.75rem)] pointer-events-none border-2 -m-0.75 border-transparent has-[+input:focus-visible]:border-lime-500 transition-colors" />
-            <input :id="name" :name="name" :type="type === 'password' ? (passwordShown ? 'text' : 'password') : type"
-                v-model="model" :placeholder="placeholder"
+            <input ref="inputEl" :id="name" :name="name"
+                :type="type === 'password' ? (passwordShown ? 'text' : 'password') : type" v-model="model"
+                :placeholder="placeholder"
                 class="py-1.5 px-2 outline-0 placeholder:text-neutral-500 disabled:text-neutral-300 flex-1 w-full"
                 :aria-invalid="error ? true : false"
                 :aria-describedby="`${name}-hint ${strengthLevel ? 'password-strength' : ''}`" :disabled="locked"
                 v-bind="inputAttrs" />
-            <img v-if="valid" :src="TickTwenty" alt="valid" :class="strengthLevel !== undefined ? undefined : 'pr-2'">
-            <RevealButton v-if="type === 'password'" @toggle="passwordShown = !passwordShown" />
+            <img v-if="valid" :src="TickTwenty" alt="" :class="type === 'password' ? undefined : 'pr-2'">
+            <RevealButton v-if="type === 'password'" v-model:visible="passwordShown" :disabled="locked" />
         </div>
         <StrengthMeter v-if="strengthLevel !== undefined" :strength-level="strengthLevel" />
-        <HintField :name="name" :error="error ? true : false" :hint="hint" :password="strengthLevel ? true : false"
+        <HintField :name="name" :error="error" :hint="hint" :password="strengthLevel ? true : false"
             :strength="strengthLevel" />
     </div>
 </template>

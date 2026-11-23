@@ -4,7 +4,7 @@ import Alert from '../../assets/images/icon-alert.svg'
 
 const props = defineProps<{
     name?: string,
-    error?: boolean,
+    error?: string,
     hint?: string,
     password?: boolean,
     strength?: 0 | 1 | 2 | 3 | 4,
