@@ -300,7 +300,7 @@ watch(() => submitted.value, async (newVal) => {
               <BaseCheckbox :ref="bindField('terms')" name="accept" id="accept" v-model="terms"
                 :input-attrs="termsAttrs" :invalid="submitCount > 0 && !!errors.terms" :locked="isLoading" />
               <label for="accept">I accept the <BaseLink href="/">Terms</BaseLink> and
-                <BaseLink href="/gamer-sign-up-form/">Privacy Policy</BaseLink>.
+                <BaseLink href="/">Privacy Policy</BaseLink>.
               </label>
             </div>
             <HintField v-show="submitCount > 0 && errors.terms"
