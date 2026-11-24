@@ -101,8 +101,8 @@ const passwordShown = ref(false)
 const confirmShown = ref(false)
 const submitted = ref(false)
 
-const statusFor = (valid: boolean, error?: string): FieldStatus => {
-  if (submitCount.value > 0 && error) return 'error'
+const statusFor = (valid: boolean, error?: string, checked?: boolean): FieldStatus => {
+  if (checked && error) return 'error'
   if (submitted.value) return 'locked'
   return valid ? 'ok' : 'pending'
 }
@@ -110,18 +110,19 @@ const statusFor = (valid: boolean, error?: string): FieldStatus => {
 const fieldState = (
   valid: boolean,
   error: string | undefined,
-  labels: { ok: string, pending: string, locked?: string, error?: string }
+  labels: { ok: string, pending: string, locked?: string, error?: string },
+  checked: boolean
 ): FieldState => {
-  const status = statusFor(valid, error)
+  const status = statusFor(valid, error, checked)
   return { status, text: status === 'error' ? error ?? labels.error ?? 'invalid' : labels[status] ?? status }
 }
 
 const fields = computed<Partial<Record<FieldName, FieldState>>>(() => ({
-  callsign: fieldState(zodValid('callsign'), errorText('callsign'), { ok: 'ok', pending: 'pending', locked: 'locked' }),
-  email: fieldState(zodValid('email'), errorText('email'), { ok: 'ok', pending: 'pending', locked: 'locked' }),
-  password: fieldState(zodValid('password'), errorText('password'), { ok: 'ok', pending: 'pending', locked: 'locked' }),
-  confirm: fieldState(confirmResult.value.success, confirmResult.value.error?.issues[0]?.code === 'custom' ? 'mismatch' : errorText('confirm'), { ok: 'ok', pending: 'pending', locked: 'locked' }),
-  terms: fieldState(zodValid('terms'), errorText('terms'), { ok: 'ok', pending: 'required', locked: 'locked' }),
+  callsign: fieldState(zodValid('callsign'), errorText('callsign'), { ok: 'ok', pending: 'pending', locked: 'locked' }, wasChecked('callsign')),
+  email: fieldState(zodValid('email'), errorText('email'), { ok: 'ok', pending: 'pending', locked: 'locked' }, wasChecked('email')),
+  password: fieldState(zodValid('password'), errorText('password'), { ok: 'ok', pending: 'pending', locked: 'locked' }, wasChecked('password')),
+  confirm: fieldState(confirmResult.value.success, confirmResult.value.error?.issues[0]?.code === 'custom' ? 'mismatch' : errorText('confirm'), { ok: 'ok', pending: 'pending', locked: 'locked' }, wasChecked('confirm')),
+  terms: fieldState(zodValid('terms'), errorText('terms'), { ok: 'ok', pending: 'required', locked: 'locked' }, submitCount.value > 0),
 }))
 
 const strengthOptions: Options<string> = [
