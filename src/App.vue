@@ -179,7 +179,7 @@ const total = computed(() => Object.values(fields.value ?? {}).length)
 const readyCount = computed(() => Object.values(fields.value ?? {}).filter(state => state.status === 'ok' || state.status === 'locked').length)
 
 const goToLogin = () => {
-  window.location.assign('/gamer-sign-up-form/')
+  window.location.assign('/')
 }
 
 gsap.registerPlugin(TextPlugin, ScrambleTextPlugin)
@@ -299,7 +299,7 @@ watch(() => submitted.value, async (newVal) => {
             <div class="preset-5 text-neutral-300 flex gap-1.5">
               <BaseCheckbox :ref="bindField('terms')" name="accept" id="accept" v-model="terms"
                 :input-attrs="termsAttrs" :invalid="submitCount > 0 && !!errors.terms" :locked="isLoading" />
-              <label for="accept">I accept the <BaseLink href="/gamer-sign-up-form/">Terms</BaseLink> and
+              <label for="accept">I accept the <BaseLink href="/">Terms</BaseLink> and
                 <BaseLink href="/gamer-sign-up-form/">Privacy Policy</BaseLink>.
               </label>
             </div>
@@ -312,7 +312,7 @@ watch(() => submitted.value, async (newVal) => {
             aria-hidden="true">_</span>
         </BaseButton>
         <p class="text-center preset-5">
-          Already an operator? <BaseLink href="/gamer-sign-up-form/">Log in</BaseLink>
+          Already an operator? <BaseLink href="/">Log in</BaseLink>
         </p>
       </form>
     </main>
