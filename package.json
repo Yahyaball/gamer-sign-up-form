@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.3.5",
     "@vee-validate/zod": "^4.15.1",
     "check-password-strength": "^3.0.0",
+    "gsap": "^3.15.1",
     "tailwindcss": "^4.3.5",
     "vue": "^3.5.44",
     "zod": "^4.6.7"

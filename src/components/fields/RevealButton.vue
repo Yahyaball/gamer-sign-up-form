@@ -8,7 +8,7 @@ const statusMessage = ref('')
 
 function toggleVisibility() {
     visible.value = !visible.value
-    statusMessage.value = visible.value ? 'Password shown' : 'Password hidden'
+    statusMessage.value = visible.value ? 'Password hidden' : 'Password shown'
 }
 
 defineProps<{

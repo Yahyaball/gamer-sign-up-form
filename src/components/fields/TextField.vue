@@ -29,7 +29,7 @@ defineExpose({ focus: () => inputEl.value?.focus() })
         <label :for="name" class="preset-6 uppercase text-neutral-300"><span aria-hidden="true"
                 class="text-lime-500 pr-1">></span>{{ label }}</label>
         <div
-            class="relative shadow-well bg-neutral-950 border border-neutral-600 has-aria-invalid:border-red-400 preset-4 transition-colors hover:border-neutral-300 has-[input:focus-visible]:border-lime-500 outline-0 text-neutral-100 flex items-center">
+            class="relative shadow-well bg-neutral-950 border border-neutral-600 has-aria-invalid:border-red-400 preset-4 transition-colors has-[input:enabled]:hover:border-neutral-300 has-[input:focus-visible]:border-lime-500 outline-0 text-neutral-100 flex items-center">
             <div
                 class="absolute size-[calc(100%+0.75rem)] pointer-events-none border-2 -m-0.75 border-transparent has-[+input:focus-visible]:border-lime-500 transition-colors" />
             <input ref="inputEl" :id="name" :name="name"
